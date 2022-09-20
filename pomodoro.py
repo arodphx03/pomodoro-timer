@@ -1,4 +1,6 @@
-import time
+import time, sys
+
+pomodoroCount = 0
 
 def timercount(t):
     while (t >= 0):
@@ -18,20 +20,31 @@ def breakcount(t):
         t -= 1
     print("Break time is over!\n")
 
-m = int(input("Enter desired focus minutes: "))
-mins = m * 60
-s = int(input("Enter desired focus seconds: "))
-secs = s 
-t = mins + secs
+while True:
+    while True:
+        userInput = input("Enter 's' to start timer or 'q' to quit: ").lower()
+        if userInput == 'q':
+            print("You have exited the program.")
+            sys.exit()
+        if userInput == 's':
+            break
 
-print("\n--- Focus time ---")
-timercount(t)
+    if userInput == 's':
+        mins = int(input("Enter desired focus minutes: "))
+        mins = mins * 60
+        secs = int(input("Enter desired focus seconds: "))
+        t = mins + secs
 
-m = int(input("Enter desired break minutes: "))
-mins = m * 60
-s = int(input("Enter desired break seconds: "))
-secs = s 
-t = mins + secs
+        print("\n--- Focus time ---")
+        timercount(t)
 
-print("\n--- Break Time ---")
-breakcount(t)
+        mins = int(input("Enter desired break minutes: "))
+        mins = mins * 60
+        secs = int(input("Enter desired break seconds: "))
+        t = mins + secs
+
+        print("\n--- Break Time ---")
+        breakcount(t)
+        pomodoroCount = pomodoroCount + 1
+
+        print(f"Congratulations! You earned {pomodoroCount} pomodoro(s)!\n")
